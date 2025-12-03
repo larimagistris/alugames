@@ -1,3 +1,15 @@
+let jogosAlugados = 0;
+
+window.onload = () => {
+    const alugadosInicial = document.querySelectorAll(".dashboard__item__img--rented");
+    jogosAlugados = alugadosInicial.length;
+    contarExibirJogosAlugados();
+};
+
+function contarExibirJogosAlugados() {
+    console.log(`Total de jogos alugados ${jogosAlugados}`);
+}
+
 function alterarStatus(id) {
     let botaoClicado = document.getElementById(`game-${id}`);
 
@@ -12,10 +24,14 @@ function alterarStatus(id) {
             imagem.classList.remove("dashboard__item__img--rented");
             botao.classList.remove("dashboard__item__button--return");
             botao.innerHTML = "Alugar";
+            jogosAlugados--;
         }
     } else {
         imagem.classList.add("dashboard__item__img--rented");
         botao.classList.add("dashboard__item__button--return");
         botao.innerHTML = "Devolver";
+        jogosAlugados++;
     }
+
+    contarExibirJogosAlugados();
 }
